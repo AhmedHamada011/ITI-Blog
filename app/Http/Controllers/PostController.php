@@ -23,6 +23,21 @@ class PostController extends Controller
 
     public function show()
     {
+      $post = [
+        "id"=>1,
+        "title"=>"laravel",
+        "description" => "Hello from description",
+        "posted_by"=>"ahmed",
+        "created_at"=>"2023-04-05"
+      ];
+
+      $creator = [
+        "name" => "Ahmed",
+        "email" =>"ahmed@test.com"
+      ];
+
+
+      return view("posts.show",["post"=>$post,"creator"=>$creator]);
 
     }
 }
