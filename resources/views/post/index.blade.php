@@ -23,7 +23,7 @@
                     <td>{{$post["posted_by"]}}</td>
                     <td>{{$post["created_at"]}}</td>
                     <td>
-                      <x-button :link="route('posts.show',$post['id'])" type="secondary">view</x-button>
+                      <x-button type="secondary" :link="route('posts.show',$post['id'])" >view</x-button>
                       <x-button type="primary">edit</x-button>
                       <x-button type="danger">delete</x-button>
                     </td>
