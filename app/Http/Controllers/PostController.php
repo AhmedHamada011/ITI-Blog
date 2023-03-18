@@ -17,7 +17,7 @@ class PostController extends Controller
 
         ];
 
-        return view("posts.index",["posts"=>$posts]);
+        return view("post.index",["posts"=>$posts]);
     }
 
 
@@ -36,8 +36,19 @@ class PostController extends Controller
         "email" =>"ahmed@test.com"
       ];
 
-
-      return view("posts.show",["post"=>$post,"creator"=>$creator]);
+      return view("post.show",["post"=>$post,"creator"=>$creator]);
 
     }
+
+
+  public function create()
+  {
+    return view("post.create");
+  }
+
+
+  public function store(Request $request)
+  {
+    return redirect()->route("posts.index");
+  }
 }
