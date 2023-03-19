@@ -2,53 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+
+
+  public function index()
     {
-        $posts = [
-            ["id"=>1,"title"=>"laravel","posted_by"=>"ahmed","created_at"=>"2023-04-05"],
-
-            ["id"=>2,"title"=>"php","posted_by"=>"mohammed","created_at"=>"2023-04-07"],
-
-            ["id"=>3,"title"=>"javascript","posted_by"=>"ali","created_at"=>"2023-04-08"],
-
-        ];
-
+        $posts = Post::withTrashed()->paginate(10);
         return view("post.index",["posts"=>$posts]);
     }
 
 
-    public function show()
+    public function show($id)
     {
-      $post = [
-        "id"=>1,
-        "title"=>"laravel",
-        "description" => "Hello from description",
-        "posted_by"=>"ahmed",
-        "created_at"=>"2023-04-05"
-      ];
+      $post = Post::find($id);
 
-      $creator = [
-        "name" => "Ahmed",
-        "email" =>"ahmed@test.com"
-      ];
+      $comments = $post->comments;
 
-      return view("post.show",["post"=>$post,"creator"=>$creator]);
+      return view("post.show",["post"=>$post,"comments"=>$comments]);
 
     }
 
 
   public function create()
   {
-    return view("post.create");
+    $users = User::all();
+    return view("post.create",["users"=>$users]);
   }
 
 
   public function store(Request $request)
   {
+    Post::create($request->all());
+
     return redirect()->route("posts.index");
+  }
+
+
+  public function edit($id)
+  {
+    $post = Post::find($id);
+    $users = User::all();
+    return view("post.edit",["post"=>$post,"users"=>$users]);
+  }
+
+
+  public function update(Post $post,Request $request)
+  {
+    $post->update($request->all());
+
+    return redirect()->route("posts.index");
+  }
+
+  public function destroy(Post $post)
+  {
+    $post->delete();
+
+    return redirect()->route("posts.index");
+
+  }
+
+  public function restore($id, Request $request)
+  {
+    $post = Post::withTrashed()->find($id);
+    $post->restore();
+    return redirect()->route("posts.index");
+
   }
 }
