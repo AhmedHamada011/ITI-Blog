@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use function MongoDB\BSON\toJSON;
 
 class PostController extends Controller
 {
@@ -27,6 +28,16 @@ class PostController extends Controller
       return view("post.show",["post"=>$post,"comments"=>$comments]);
 
     }
+
+
+  public function showApi(Post $post)
+  {
+    $post = $post->load("user");
+
+
+    return $post->toJson();
+
+  }
 
 
   public function create()
