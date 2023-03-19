@@ -27,41 +27,11 @@
   </div>
 
 
-  <div class="card mt-3">
-    <div class="card-header">
-      add new comment
-    </div>
-    <div class="card-body">
-      <form action="{{route('comments.store')}}" method="post">
-        @csrf
-        <input type="hidden" name="post" value="{{$post["id"]}}">
-        <div class="mb-3">
-          <label for="comment" class="form-label">Comment</label>
-          <textarea class="form-control" name="comment" id="comment"></textarea>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Update</button>
-
-      </form>
-    </div>
-  </div>
+  <livewire:add-comment :post="$post"/>
+  <livewire:comments :post="$post"/>
 
 
-  <div class="card mt-3">
-    <div class="card-header">
-      Comments
-    </div>
-    <div class="card-body">
-      <div class="comment">
-        @foreach($comments as $comment)
-          <div class="comments">
-            <p class="card-text">{{$comment["comment"]}}</p>
-          </div>
-          <hr>
-        @endforeach
-      </div>
-    </div>
-  </div>
 
 
 
