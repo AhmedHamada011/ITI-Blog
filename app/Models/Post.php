@@ -17,7 +17,7 @@ class Post extends Model
   use Sluggable;
 
 
-  protected $fillable = ["title","description","user_id"];
+  protected $fillable = ["title","description","user_id","image"];
 
 
   public function user()
@@ -35,6 +35,14 @@ class Post extends Model
   {
     return Attribute::make(
       get: fn ($value) => $this->created_at->diffForHumans()
+    );
+
+  }
+
+  protected function image():Attribute
+  {
+    return Attribute::make(
+      get: fn ($value) => asset("storage/". $value)
     );
 
   }

@@ -77,18 +77,19 @@
   </nav>
 
   <main class="py-4">
-    @if ($errors->any())
-      <div class="my-3">
-        <div class="alert alert-danger">
-          <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-      </div>
-    @endif
     <div class="container">
+      @if ($errors->any())
+        <div class="my-3">
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      @endif
+
       @yield("content")
     </div>
 </div>

@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use function MongoDB\BSON\toJSON;
 
 class PostController extends Controller
@@ -48,7 +49,12 @@ class PostController extends Controller
 
   public function store(StorePostRequest $request)
   {
-    Post::create($request->all());
+    $image = $request->file('image')->store('images',['disk' => "public"]);
+    $data = $request->validated();
+
+    $data["image"] = $image;
+
+    Post::create($data);
 
     return redirect()->route("posts.index");
   }
@@ -64,13 +70,25 @@ class PostController extends Controller
 
   public function update(Post $post,UpdatePostRequest $request)
   {
+    $data = $request->validated();
 
-    $post->update($request->all());
+    if($request->hasFile("image")){
+
+      Storage::disk("public")->delete($post->image);
+
+      $image = $request->file('image')->store('images',['disk' => "public"]);
+      $data["image"] = $image;
+
+    }
+    $post->update($data);
     return redirect()->route("posts.index");
   }
 
   public function destroy(Post $post)
   {
+
+    Storage::disk("public")->delete($post->image);
+
     $post->delete();
 
     return redirect()->route("posts.index");

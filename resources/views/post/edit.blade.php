@@ -5,7 +5,7 @@
 
 
 
-  <form class="mt-5" action="{{route("posts.update",$post->id)}}" method="post">
+  <form class="mt-5" action="{{route("posts.update",$post->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method("put")
     <div class="mb-3">
@@ -25,6 +25,11 @@
           <option value="{{$user->id}}" {{$post->user->id === $user->id ? "selected" : ""}}>{{$user->name}}</option>
         @endforeach
       </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="user" class="form-label">Image</label>
+      <input class="form-control" name="image" type="file" id="formFile">
     </div>
 
     <button type="submit" class="btn btn-primary">Update</button>

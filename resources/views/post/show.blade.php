@@ -11,7 +11,9 @@
     <div class="card-body">
       <h5 class="card-title">Title: {{$post["title"]}}</h5>
       <p class="card-text">Description: {{$post["description"]}}</p>
-      <p class="card-text text-muted fs-6">{{$post->human_readable_date}}</p>
+      <img src="{{$post["image"]}}" style="width: 250px" alt="">
+
+      <p class="card-text text-muted mt-2 fs-6">{{$post->human_readable_date}}</p>
     </div>
   </div>
 

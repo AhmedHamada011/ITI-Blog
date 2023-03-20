@@ -5,7 +5,7 @@
 
 
 
-  <form class="mt-5" action="{{route("posts.store")}}" method="post">
+  <form class="mt-5" action="{{route("posts.store")}}" method="post" enctype="multipart/form-data">
     @csrf
     @method("post")
     <div class="mb-3">
@@ -27,6 +27,11 @@
       </select>
     </div>
 
+
+    <div class="mb-3">
+      <label for="user" class="form-label">Image</label>
+      <input class="form-control" name="image" type="file" id="formFile">
+    </div>
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
 
