@@ -13,10 +13,6 @@ class Comments extends Component
   public $comments;
   protected $listeners = ["commentAdded"=>'$refresh'];
 
-  public function commentEvent()
-  {
-    dd("Sdsdsdsd");
-  }
 
   public function render()
   {

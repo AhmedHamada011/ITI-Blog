@@ -16,7 +16,6 @@ return new class extends Migration
             $table->morphs("commentable");
             $table->text("comment");
             $table->timestamps();
-
         });
     }
 

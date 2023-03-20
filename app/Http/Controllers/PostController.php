@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,20 +36,17 @@ class PostController extends Controller
   {
     $post = $post->load("user");
 
-
     return $post->toJson();
-
   }
 
 
   public function create()
   {
-    $users = User::all();
-    return view("post.create",["users"=>$users]);
+    return view("post.create",["users"=> User::all()]);
   }
 
 
-  public function store(Request $request)
+  public function store(StorePostRequest $request)
   {
     Post::create($request->all());
 
@@ -63,10 +62,10 @@ class PostController extends Controller
   }
 
 
-  public function update(Post $post,Request $request)
+  public function update(Post $post,UpdatePostRequest $request)
   {
-    $post->update($request->all());
 
+    $post->update($request->all());
     return redirect()->route("posts.index");
   }
 

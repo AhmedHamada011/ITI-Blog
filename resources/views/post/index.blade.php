@@ -22,7 +22,7 @@
                     <th>{{$post["id"]}}</th>
                     <td>{{$post["title"]}}</td>
                     <td>{{$post["posted_by"]}}</td>
-                    <td>{{$post->human_readable_date}}</td>
+                    <td>{{$post["created_at"]->format("Y-m-d")}}</td>
                     <td>
                       <x-button type="submit" class="secondary" method="get" :link="route('posts.show',$post['id'])" >view</x-button>
 

@@ -10,7 +10,7 @@
     @method("put")
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input type="text" name="title" class="form-control" id="title" value="{{$post->description}}">
+      <input type="text" name="title" class="form-control" id="title" value="{{$post->title}}">
     </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
