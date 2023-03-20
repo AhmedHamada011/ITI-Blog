@@ -54,7 +54,13 @@ class PostController extends Controller
 
     $data["image"] = $image;
 
-    Post::create($data);
+
+    $tags = explode(",", $request->tags);
+
+    $data["tags"] = $tags;
+
+    $post = Post::create($data);
+    $post->syncTags($tags);
 
     return redirect()->route("posts.index");
   }

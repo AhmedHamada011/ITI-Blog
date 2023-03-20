@@ -13,10 +13,12 @@
       <p class="card-text">Description: {{$post["description"]}}</p>
       <img src="{{$post["image"]}}" style="width: 250px" alt="">
 
+      <p class="mt-2">
+        Tags: @foreach($post->tags as $tag) <span class="badge rounded-pill text-bg-warning">{{$tag->name}}</span> @endforeach
+      </p>
       <p class="card-text text-muted mt-2 fs-6">{{$post->human_readable_date}}</p>
     </div>
   </div>
-
 
   <div class="card mt-3">
     <div class="card-header">

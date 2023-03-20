@@ -12,6 +12,7 @@
       <label for="title" class="form-label">Title</label>
       <input type="text" name="title" class="form-control" id="title">
     </div>
+
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea class="form-control" name="description" id="description"></textarea>
@@ -32,6 +33,12 @@
       <label for="user" class="form-label">Image</label>
       <input class="form-control" name="image" type="file" id="formFile">
     </div>
+
+    <div class="mb-3">
+      <label for="tags" class="form-label">Tags</label>
+      <input type="test" class="form-control" name="tags" id="tags">
+    </div>
+
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
 
