@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Jobs\PruneOldPostsJob;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,6 @@ use function MongoDB\BSON\toJSON;
 
 class PostController extends Controller
 {
-
 
   public function index()
     {
@@ -82,6 +82,10 @@ class PostController extends Controller
     $post = Post::withTrashed()->find($id);
     $post->restore();
     return redirect()->route("posts.index");
+  }
 
+  public function removePosts()
+  {
+    PruneOldPostsJob::dispatch();
   }
 }
