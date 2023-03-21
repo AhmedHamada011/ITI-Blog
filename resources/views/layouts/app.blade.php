@@ -25,6 +25,11 @@
       <a class="navbar-brand" href="{{ url('/') }}">
         {{ config('app.name', 'Laravel') }}
       </a>
+
+      <a class="navbar-item text-decoration-none text-secondary" href="{{ route("posts.index") }}">
+        All Posts
+      </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
@@ -59,6 +64,7 @@
               </a>
 
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route("users.edit",auth()->user()->id)}}">profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
