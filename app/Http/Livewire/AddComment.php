@@ -15,6 +15,7 @@ class AddComment extends Component
 
   public function addComment()
   {
+
     $this->post->comments()->create([
       "comment"=> $this->comment
     ]);

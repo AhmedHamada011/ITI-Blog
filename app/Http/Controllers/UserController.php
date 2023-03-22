@@ -26,6 +26,7 @@ class UserController extends Controller
 //    $image = $request->file('profile_image')->store('profile_images',['disk' => "public"]);
     $data = $request->validated();
 
+    $cuser->clearMediaCollection('profile_images');
     $cuser->addMediaFromRequest('profile_image')->toMediaCollection('profile_images','profile_images');
 
     if(isset($data["password"])){
