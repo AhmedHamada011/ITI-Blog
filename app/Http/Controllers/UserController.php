@@ -20,17 +20,16 @@ class UserController extends Controller
    * @param UpdateUserRequest $request
    * @return void
    */
-  public function update(User $cuser, UpdateUserRequest $request)
+  public function update(User $user, UpdateUserRequest $request)
   {
 
-//    $image = $request->file('profile_image')->store('profile_images',['disk' => "public"]);
     $data = $request->validated();
 
-    $cuser->clearMediaCollection('profile_images');
-    $cuser->addMediaFromRequest('profile_image')->toMediaCollection('profile_images','profile_images');
+    $user->clearMediaCollection('profile_images');
+    $user->addMediaFromRequest('profile_image')->toMediaCollection('profile_images','profile_images');
 
     if(isset($data["password"])){
-      $post = $cuser->update([
+      $post = $user->update([
           'name' => $data["name"],
           'email' => $data["email"],
           'password'=> Hash::make($data['password']),
@@ -38,7 +37,7 @@ class UserController extends Controller
       return redirect()->route('posts.index');
     }
 
-    $post = $cuser->update([
+    $post = $user->update([
       'name' => $data["name"],
       'email' => $data["email"],
     ]);

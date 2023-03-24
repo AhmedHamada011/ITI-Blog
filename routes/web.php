@@ -53,7 +53,7 @@ Route::group(['middleware'=>['auth']],function(){
 
 
   Route::get('/users/{user}/edit', [UserController::class,"edit"])->name("users.edit");
-  Route::put('/users/{cuser}', [UserController::class,"update"])->name("users.update");
+  Route::put('/users/{user}', [UserController::class,"update"])->name("users.update");
 
   // =============================================== end users Resource ===============================================
 
