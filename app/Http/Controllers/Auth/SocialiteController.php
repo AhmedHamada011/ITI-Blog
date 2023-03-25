@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use function MongoDB\BSON\toJSON;
 
 class SocialiteController extends Controller
 {
@@ -36,5 +38,15 @@ class SocialiteController extends Controller
 
     return redirect()->route("home");
 
+  }
+
+  public function info()
+  {
+    $data = [
+      'name' => auth()->user()->name,
+      'email' => auth()->user()->email,
+      'provider' => auth()->user()->provider,
+    ];
+    return json_encode($data);
   }
 }

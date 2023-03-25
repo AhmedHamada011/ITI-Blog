@@ -69,5 +69,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+
+// socialite
 Route::get("/auth/{provider}/redirect",[SocialiteController::class,'redirect'])->name("auth.socilaite.redirect");
 Route::get("/auth/{provider}/callback",[SocialiteController::class,'callback'])->name("auth.socilaite.callback");
+
+
+Route::get("/auth/{provider}/info",[SocialiteController::class,'info'])->name("auth.socilaite.info");
+
