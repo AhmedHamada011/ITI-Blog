@@ -47,6 +47,7 @@ class SocialiteController extends Controller
       'email' => auth()->user()->email,
       'provider' => auth()->user()->provider,
     ];
+
     return json_encode($data);
   }
 }

@@ -29,7 +29,8 @@
       <a class="navbar-item text-decoration-none text-secondary" href="{{ route("posts.index") }}">
         All Posts
       </a>
-      @if(auth()->user()->provider ==="github")
+      @auth
+      @if(auth()->user()->provider ==="github" ?? false)
         <a class="navbar-item text-decoration-none text-secondary ms-3" href="{{ route("auth.socilaite.info",'github') }}">
           github info
         </a>
@@ -40,7 +41,7 @@
       @endif
 
 
-      @if(auth()->user()->provider ==="google")
+      @if(auth()->user()->provider ==="google" ?? false)
         <a class="navbar-item text-decoration-none text-secondary ms-3" href="{{ route("auth.socilaite.info",'google') }}">
           google info
         </a>
@@ -49,7 +50,7 @@
           google
         </a>
       @endif
-
+      @endauth
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
