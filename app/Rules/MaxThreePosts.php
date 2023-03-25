@@ -8,6 +8,8 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class MaxThreePosts implements ValidationRule
 {
+
+  public $user;
     /**
      * Run the validation rule.
      *
@@ -15,16 +17,16 @@ class MaxThreePosts implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $user = User::find($value);
-        if($user->posts->count() >= 3){
-          $fail("Sorry, User \"{$user["name"]}\" Exceed the max posts number");
+        $this->user = User::find($value);
+        if($this->user->posts->count() >= 3){
+          $fail("Sorry, User \"{$this->user["name"]}\" Exceed the max posts number");
         }
     }
 
 
   public function message()
   {
-    return 'error';
+    return "Sorry, User \"{$this->user["name"]}\" Exceed the max posts number";
   }
 
 }

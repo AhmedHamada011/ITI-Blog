@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,7 +60,6 @@ Route::group(['middleware'=>['auth']],function(){
 
 });
 // comment routes
-
 Route::post('/comments', [CommentController::class,"store"])->name("comments.store");
 
 
@@ -68,3 +67,7 @@ Route::post('/comments', [CommentController::class,"store"])->name("comments.sto
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get("/auth/{provider}/redirect",[SocialiteController::class,'redirect'])->name("auth.socilaite.redirect");
+Route::get("/auth/{provider}/callback",[SocialiteController::class,'callback'])->name("auth.socilaite.callback");

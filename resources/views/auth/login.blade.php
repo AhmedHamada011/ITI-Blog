@@ -57,7 +57,15 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                              <a href="{{route("auth.socilaite.redirect","github")}}" class="btn btn-primary">
+                                 github
+                              </a>
+                              <a href="{{route("auth.socilaite.redirect","google")}}" class="btn btn-primary">
+                                google
+                              </a>
+
+
+                            @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
