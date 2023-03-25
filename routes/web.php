@@ -38,7 +38,7 @@ Route::group(['middleware'=>['auth']],function(){
   Route::post('/posts/{post}/restore', [PostController::class,"restore"])->name("posts.restore");
 
   Route::get('/posts/{post}', [PostController::class,"show"])->name("posts.show");
-  Route::get('/api/posts/{post}', [PostController::class,"showApi"])->name("posts.showApi");
+//  Route::get('/api/posts/{post}', [PostController::class,"showApi"])->name("posts.showApi");
 
   Route::get('/posts/{post}/edit', [PostController::class,"edit"])->name("posts.edit");
   Route::put('/posts/{post}', [PostController::class,"update"])->name("posts.update");
